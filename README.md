@@ -1,1 +1,3 @@
-Investigating the Performance of Embedding Methods and Fine-Tuning Techniques in a Question Answering Chat Application Compared to Traditional Approaches
+Evaluating the Impact of Fine-Tuning and Embedding Methods on Enhancing Performance in Sentiment Analysis Tasks" 
+
+
