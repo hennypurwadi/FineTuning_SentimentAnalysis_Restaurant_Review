@@ -1,4 +1,4 @@
-Evaluating the Impact of Fine-Tuning and Embedding Methods on Enhancing Performance in Sentiment Analysis Tasks" 
+Evaluating the Impact of Fine-Tuning Methods on Enhancing Performance in Sentiment Analysis Tasks" 
 
 the focus of the research is on comparing the effectiveness of fine-tuning and embedding techniques for improving sentiment analysis performance. 
 
