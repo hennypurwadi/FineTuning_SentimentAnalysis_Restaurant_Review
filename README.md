@@ -1,6 +1,6 @@
 Evaluating the Impact of Fine-Tuning Methods on Enhancing Performance in Sentiment Analysis Tasks" 
 
-the focus of the research is on comparing the effectiveness of fine-tuning and embedding techniques for improving sentiment analysis performance. 
+The focus of the research is on comparing the effectiveness of fine-tuning and embedding techniques for improving sentiment analysis performance. 
 
 References
 Krill, P. (2024) 'OpenAI unveils new embedding models, GPT Turbo updates', InfoWorld.com, 26 Jan, NA, available: https://link-gale-com.hull.idm.oclc.org/apps/doc/A780530477/ITOF?u=unihull&sid=summon&xid=0bb62d90 [accessed 03 Aug 2024].
