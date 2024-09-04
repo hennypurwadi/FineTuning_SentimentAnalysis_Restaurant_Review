@@ -1,8 +1,9 @@
-Evaluating the Impact of Fine-Tuning Methods on Enhancing Performance in Sentiment Analysis Tasks" 
+## Evaluating the Impact of Fine-Tuning Methods on Enhancing Performance in Sentiment Analysis Tasks" 
 
-The focus of the research is on comparing the effectiveness of fine-tuning and embedding techniques for improving sentiment analysis performance. 
+### The focus of the research is on comparing the effectiveness of fine-tuning and embedding techniques for improving sentiment analysis performance. 
 
-References
+### References:
+
 Krill, P. (2024) 'OpenAI unveils new embedding models, GPT Turbo updates', InfoWorld.com, 26 Jan, NA, available: https://link-gale-com.hull.idm.oclc.org/apps/doc/A780530477/ITOF?u=unihull&sid=summon&xid=0bb62d90 [accessed 03 Aug 2024].
 
 Liu, S., Shuai, P., Zhang, X., Chen, S., Li, L., Liu, M. (2020). Fine-Tuned Transformer Model for Sentiment Analysis. In: Li, G., Shen, H., Yuan, Y., Wang, X., Liu, H., Zhao, X. (eds) Knowledge Science, Engineering and Management. KSEM 2020. Lecture Notes in Computer Science(), vol 12275. Springer, Cham. https://doi.org/10.1007/978-3-030-55393-7_30
