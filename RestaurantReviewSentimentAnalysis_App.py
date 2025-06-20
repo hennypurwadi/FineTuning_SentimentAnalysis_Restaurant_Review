@@ -136,18 +136,7 @@ def main():
             help="Maximum length for tokenization"
         )
         
-        # Option to use a different model
-        use_custom_model = st.checkbox("Use different model", help="Load a different Hugging Face model")
-        
-        if use_custom_model:
-            custom_model = st.text_input(
-                "Custom model name:",
-                value=DEFAULT_MODEL,
-                help="Enter any Hugging Face model name"
-            )
-            model_to_load = custom_model
-        else:
-            model_to_load = DEFAULT_MODEL
+
     
     # Auto-load the default model on startup
     if 'model_loaded' not in st.session_state:
@@ -349,22 +338,7 @@ def main():
                 st.write("**Training:** European Restaurant Reviews")
                 st.write(f"**Max Length:** {max_length} tokens")
         
-        # Sample reviews for testing
-        st.markdown('<h3 class="sub-header">📋 Sample Reviews</h3>', unsafe_allow_html=True)
-        
-        sample_reviews = [
-            "The food was absolutely delicious and the service was outstanding!",
-            "Terrible experience. The food was cold and the staff was rude.",
-            "Average restaurant with decent food but nothing special.",
-            "Best dining experience I've had in years! Highly recommended.",
-            "Overpriced and underwhelming. Would not return."
-        ]
-        
-        for i, sample in enumerate(sample_reviews):
-            if st.button(f"Try Sample {i+1}", key=f"sample_{i}"):
-                # Use session state to pass the sample text
-                st.session_state.sample_text = sample
-                st.rerun()
+
         
         # Apply sample text if available
         if 'sample_text' in st.session_state:
