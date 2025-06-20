@@ -1,6 +1,7 @@
 # Restaurant Review Sentiment Analysis App
 
 A Streamlit application that uses a fine-tuned DistilBERT model to analyze the sentiment of restaurant reviews. This app can load models from Hugging Face Hub or local directories and classify reviews as Positive or Negative.
+App link: https://finetuningsentimentanalysisrestaurantreview-ezvyaqlpzg4d8kxvjj.streamlit.app/
 
 ## Features
 
