@@ -326,7 +326,7 @@ def main():
             
             # Model details
             with st.expander("🔍 Model Details"):
-                st.write("**Architecture:** DistilBERT")
+                st.write("**Architecture:** Fine-Tuned distilBERT")
                 st.write("**Task:** Restaurant Sentiment Classification")
                 st.write("**Classes:** Positive, Negative")
                 st.write("**Training:** European Restaurant Reviews")
