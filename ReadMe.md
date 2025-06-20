@@ -33,12 +33,12 @@ streamlit run app.py
    - Choose between Hugging Face Hub or Local Path
    - For Hugging Face Hub: 
      Model URLs: https://huggingface.co/RinInori/distilbert-restaurant-sentiment
-
-     from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
-
-     model = DistilBertForSequenceClassification.from_pretrained("RinInori/distilbert-restaurant-sentiment")
-
-     tokenizer = DistilBertTokenizer.from_pretrained("RinInori/distilbert-restaurant-sentiment" )
+```bash
+from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+model = DistilBertForSequenceClassification.from_pretrained("RinInori/distilbert-restaurant-sentiment")
+tokenizer = DistilBertTokenizer.from_pretrained("RinInori/distilbert-restaurant-sentiment"
+```
+     
 
 7.6 Public Model Usage Example
 This demonstrates how anyone can load and use uploaded model with just two lines of code.
