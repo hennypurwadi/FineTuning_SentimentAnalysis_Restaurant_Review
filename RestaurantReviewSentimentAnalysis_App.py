@@ -49,19 +49,22 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Default model configuration
+DEFAULT_MODEL = "RinInori/distilbert-restaurant-sentiment"
+
 @st.cache_resource
-def load_model_and_tokenizer(model_name_or_path):
+def load_model_and_tokenizer(model_name=DEFAULT_MODEL):
     """
-    Load the fine-tuned DistilBERT model and tokenizer from Hugging Face Hub or local path.
+    Load the fine-tuned DistilBERT model and tokenizer from Hugging Face Hub.
     Uses caching to avoid reloading on every interaction.
     """
     try:
-        with st.spinner(f"Loading model and tokenizer from {model_name_or_path}..."):
+        with st.spinner(f"Loading model and tokenizer from {model_name}..."):
             # Load tokenizer
-            tokenizer = DistilBertTokenizer.from_pretrained(model_name_or_path)
+            tokenizer = DistilBertTokenizer.from_pretrained(model_name)
             
             # Load model
-            model = DistilBertForSequenceClassification.from_pretrained(model_name_or_path)
+            model = DistilBertForSequenceClassification.from_pretrained(model_name)
             
             # Set model to evaluation mode
             model.eval()
@@ -111,33 +114,17 @@ def main():
     # Main header
     st.markdown('<h1 class="main-header">🍽️ Restaurant Review Sentiment Analysis</h1>', unsafe_allow_html=True)
     
-    st.markdown("""
-    This application uses a fine-tuned **DistilBERT** model to analyze the sentiment of restaurant reviews.
-    The model was trained on European Restaurant Reviews dataset and can classify reviews as **Positive** or **Negative**.
+    st.markdown(f"""
+    This application uses a **fine-tuned DistilBERT model** specifically trained for restaurant review sentiment analysis.
+    The model **{DEFAULT_MODEL}** can classify reviews as **Positive** or **Negative** with high accuracy.
     """)
     
     # Sidebar for model configuration
     st.sidebar.markdown('<h2 class="sub-header">⚙️ Model Configuration</h2>', unsafe_allow_html=True)
     
-    # Model source selection
-    model_source = st.sidebar.radio(
-        "Choose model source:",
-        ["Hugging Face Hub", "Local Path"],
-        help="Select whether to load from Hugging Face Hub or a local directory"
-    )
-    
-    if model_source == "Hugging Face Hub":
-        model_name = st.sidebar.text_input(
-            "Model name on Hugging Face Hub:",
-            value="distilbert-base-uncased",
-            help="Enter the model name from Hugging Face Hub (e.g., 'username/model-name')"
-        )
-    else:
-        model_name = st.sidebar.text_input(
-            "Local model path:",
-            value="/path/to/your/fine-tuned-model",
-            help="Enter the full path to your local model directory"
-        )
+    # Model information
+    st.sidebar.info(f"**Model:** {DEFAULT_MODEL}")
+    st.sidebar.markdown("*Fine-tuned on European Restaurant Reviews*")
     
     # Advanced settings
     with st.sidebar.expander("🔧 Advanced Settings"):
@@ -149,36 +136,41 @@ def main():
             help="Maximum length for tokenization"
         )
         
-        batch_processing = st.checkbox(
-            "Enable batch processing",
-            help="Process multiple reviews at once"
-        )
+        # Option to use a different model
+        use_custom_model = st.checkbox("Use different model", help="Load a different Hugging Face model")
+        
+        if use_custom_model:
+            custom_model = st.text_input(
+                "Custom model name:",
+                value=DEFAULT_MODEL,
+                help="Enter any Hugging Face model name"
+            )
+            model_to_load = custom_model
+        else:
+            model_to_load = DEFAULT_MODEL
     
-    # Load model button
-    if st.sidebar.button("🚀 Load Model", type="primary"):
-        model, tokenizer = load_model_and_tokenizer(model_name)
+    # Auto-load the default model on startup
+    if 'model_loaded' not in st.session_state:
+        model, tokenizer = load_model_and_tokenizer(model_to_load)
         if model and tokenizer:
             st.session_state.model = model
             st.session_state.tokenizer = tokenizer
             st.session_state.model_loaded = True
+            st.session_state.current_model = model_to_load
+    
+    # Load model button (for custom models)
+    if use_custom_model and st.sidebar.button("🚀 Load Custom Model", type="primary"):
+        model, tokenizer = load_model_and_tokenizer(model_to_load)
+        if model and tokenizer:
+            st.session_state.model = model
+            st.session_state.tokenizer = tokenizer
+            st.session_state.model_loaded = True
+            st.session_state.current_model = model_to_load
     
     # Check if model is loaded
     if not hasattr(st.session_state, 'model_loaded') or not st.session_state.model_loaded:
-        st.warning("⚠️ Please load a model first using the sidebar.")
-        
-        # Show example of how to use with a pre-trained model
-        st.markdown("### 📝 Getting Started")
-        st.markdown("""
-        1. **For Hugging Face Hub**: Enter a model name like `distilbert-base-uncased` or your fine-tuned model
-        2. **For Local Path**: Enter the full path to your saved model directory
-        3. Click **Load Model** to initialize the model
-        4. Start analyzing restaurant reviews!
-        
-        **Example model names:**
-        - `distilbert-base-uncased` (base model)
-        - `your-username/fine-tuned-restaurant-sentiment` (your fine-tuned model)
-        """)
-        return
+        st.warning("⚠️ Model is loading, please wait...")
+        st.stop()
     
     # Main content area
     col1, col2 = st.columns([2, 1])
@@ -347,13 +339,14 @@ def main():
         
         if hasattr(st.session_state, 'model_loaded') and st.session_state.model_loaded:
             st.success("✅ Model Status: Loaded")
-            st.info(f"📍 Model Source: {model_name}")
+            st.info(f"📍 Current Model: {st.session_state.current_model}")
             
             # Model details
             with st.expander("🔍 Model Details"):
                 st.write("**Architecture:** DistilBERT")
-                st.write("**Task:** Sentiment Classification")
+                st.write("**Task:** Restaurant Sentiment Classification")
                 st.write("**Classes:** Positive, Negative")
+                st.write("**Training:** European Restaurant Reviews")
                 st.write(f"**Max Length:** {max_length} tokens")
         
         # Sample reviews for testing
@@ -369,20 +362,28 @@ def main():
         
         for i, sample in enumerate(sample_reviews):
             if st.button(f"Try Sample {i+1}", key=f"sample_{i}"):
+                # Use session state to pass the sample text
                 st.session_state.sample_text = sample
+                st.rerun()
+        
+        # Apply sample text if available
+        if 'sample_text' in st.session_state:
+            # This will be handled by the text area value
+            pass
         
         # Instructions
         with st.expander("📖 How to Use"):
             st.markdown("""
-            1. **Load Model**: Use the sidebar to load your model
+            1. **Model Ready**: The fine-tuned model is automatically loaded
             2. **Choose Input**: Select single review, multiple reviews, or file upload
-            3. **Analyze**: Click the analyze button to get sentiment predictions
+            3. **Analyze**: Enter text and click the analyze button
             4. **Review Results**: See sentiment classification and confidence scores
             
             **Tips:**
+            - This model is specifically trained for restaurant reviews
             - Longer reviews may provide more accurate results
-            - The model works best with restaurant-related content
             - Confidence scores indicate model certainty
+            - Use the sample reviews to test the functionality
             """)
 
 if __name__ == "__main__":
