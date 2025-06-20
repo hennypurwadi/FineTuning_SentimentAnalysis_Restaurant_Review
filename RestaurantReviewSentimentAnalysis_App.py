@@ -331,6 +331,8 @@ def main():
                 st.write("**Classes:** Positive, Negative")
                 st.write("**Training:** European Restaurant Reviews")
                 st.write(f"**Max Length:** {max_length} tokens")
+                st.write(f"**Model Page:** [Hugging Face](https://huggingface.co/RinInori/distilbert-restaurant-sentiment)")
+                st.write(f"**Code Link:** [GitHub](https://github.com/hennypurwadi/FineTuning_SentimentAnalysis_Restaurant_Review/tree/main)")
         
 
         
