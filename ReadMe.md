@@ -57,7 +57,7 @@ The app expects models to be compatible with the Hugging Face Transformers libra
 
 ### From Hugging Face Hub
 ```
-Model name: distilbert-base-uncased
+Model name: fine-tuned distilbert-base-uncased
 ```
 
 ### From Local Directory
