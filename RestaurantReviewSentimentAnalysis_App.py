@@ -139,22 +139,16 @@ def main():
 
     
     # Auto-load the default model on startup
+    model = DistilBertForSequenceClassification.from_pretrained(DEFAULT_MODEL)
+    tokenizer = DistilBertTokenizer.from_pretrained(DEFAULT_MODEL)
     if 'model_loaded' not in st.session_state:
-        model, tokenizer = load_model_and_tokenizer(model_to_load)
         if model and tokenizer:
             st.session_state.model = model
             st.session_state.tokenizer = tokenizer
             st.session_state.model_loaded = True
-            st.session_state.current_model = model_to_load
+            st.session_state.current_model = DEFAULT_MODEL
     
-    # Load model button (for custom models)
-    if use_custom_model and st.sidebar.button("🚀 Load Custom Model", type="primary"):
-        model, tokenizer = load_model_and_tokenizer(model_to_load)
-        if model and tokenizer:
-            st.session_state.model = model
-            st.session_state.tokenizer = tokenizer
-            st.session_state.model_loaded = True
-            st.session_state.current_model = model_to_load
+
     
     # Check if model is loaded
     if not hasattr(st.session_state, 'model_loaded') or not st.session_state.model_loaded:
