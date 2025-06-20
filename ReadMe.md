@@ -31,11 +31,33 @@ streamlit run app.py
 
 2. **Load a Model**:
    - Choose between Hugging Face Hub or Local Path
-   - For Hugging Face Hub: Enter model name (e.g., `distilbert-base-uncased`)
+   - For Hugging Face Hub: 
+     Model URLs: https://huggingface.co/RinInori/distilbert-restaurant-sentiment
+
+     from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+
+     model = DistilBertForSequenceClassification.from_pretrained("RinInori/distilbert-restaurant-sentiment")
+
+     tokenizer = DistilBertTokenizer.from_pretrained("RinInori/distilbert-restaurant-sentiment" )
+
+7.6 Public Model Usage Example
+This demonstrates how anyone can load and use uploaded model with just two lines of code.
+
+This makes model easily accessible to the machine learning community.
+
+Anyone can use my model with:
+
+[ ]
+from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+
+model = DistilBertForSequenceClassification.from_pretrained("RinInori/distilbert-restaurant-sentiment")
+
+tokenizer = DistilBertTokenizer.from_pretrained("RinInori/distilbert-restaurant-sentiment" )
+
    - For Local Path: Enter full path to your fine-tuned model directory
    - Click "Load Model"
 
-3. **Analyze Reviews**:
+2. **Analyze Reviews**:
    - **Single Review**: Enter text and click "Analyze Sentiment"
    - **Multiple Reviews**: Enter multiple reviews (one per line)
    - **Upload File**: Upload a CSV file with a 'review' column
