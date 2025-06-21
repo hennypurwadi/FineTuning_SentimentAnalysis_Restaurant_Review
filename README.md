@@ -13,6 +13,8 @@ pipeline_tag: text-classification
 ---
 Model Card for RinInori/distilbert-restaurant-sentiment
 
+A Streamlit application that uses a fine-tuned DistilBERT model to analyze the sentiment of restaurant reviews. This app can load models from Hugging Face Hub or local directories and classify reviews as Positive or Negative. App link: https://finetuningsentimentanalysisrestaurantreview-ezvyaqlpzg4d8kxvjj.streamlit.app/
+
 ### Model Description
 This is a fine-tuned DistilBERT model for sentiment analysis of restaurant reviews. 
 It is designed to classify reviews as either positive or negative. The model was developed as part of a project demonstrating the process of fine-tuning a DistilBERT model using the European Restaurant Reviews dataset, including data loading, model evaluation, handling class imbalance, and preventing overfitting.
