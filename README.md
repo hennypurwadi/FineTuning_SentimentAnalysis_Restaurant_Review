@@ -21,10 +21,6 @@ It is designed to classify reviews as either positive or negative. The model was
 
 Model type: DistilBERTForSequenceClassification
 
-Language(s) (NLP): English
-
-License: Free
-
 Finetuned from model: distilbert-base-uncased
 
 ### Model Sources
