@@ -123,7 +123,7 @@ def main():
     st.sidebar.markdown('<h2 class="sub-header">Model Configuration</h2>', unsafe_allow_html=True)
     
     # Model information
-    st.sidebar.info(f"**Model:** {DEFAULT_MODEL}")
+    st.sidebar.info(f"**Model:** [RinInori/distilbert-restaurant-sentiment](https://huggingface.co/RinInori/distilbert-restaurant-sentiment)")
     st.sidebar.markdown("*Fine-tuned on European Restaurant Reviews*")
     
     # Advanced settings
