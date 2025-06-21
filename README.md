@@ -27,8 +27,8 @@ License: Free
 
 Finetuned from model: distilbert-base-uncased
 
-### Model Sources [optional]
-Repository: https://github.com/hennypurwadi/FineTuning_SentimentAnalysis_Restaurant_Review/tree/main
+### Model Sources
+Repository: https://huggingface.co/RinInori/distilbert-restaurant-sentiment
 
 ## Uses
 
