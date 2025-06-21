@@ -318,7 +318,7 @@ def main():
                     st.error(f"Error reading file: {str(e)}")
     
     with col2:
-        st.markdown('<h2 class="sub-header">ℹModel Information</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 class="sub-header">Model Information</h2>', unsafe_allow_html=True)
         
         if hasattr(st.session_state, 'model_loaded') and st.session_state.model_loaded:
             st.success("Model Status: Loaded")
