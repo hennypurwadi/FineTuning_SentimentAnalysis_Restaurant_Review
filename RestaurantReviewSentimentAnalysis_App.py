@@ -69,10 +69,10 @@ def load_model_and_tokenizer(model_name=DEFAULT_MODEL):
             # Set model to evaluation mode
             model.eval()
             
-        st.success("✅ Model and tokenizer loaded successfully!")
+        st.success("Model and tokenizer loaded successfully!")
         return model, tokenizer
     except Exception as e:
-        st.error(f"❌ Error loading model: {str(e)}")
+        st.error(f"Error loading model: {str(e)}")
         return None, None
 
 def predict_sentiment(text, model, tokenizer, max_length=128):
@@ -120,7 +120,7 @@ def main():
     """)
     
     # Sidebar for model configuration
-    st.sidebar.markdown('<h2 class="sub-header">⚙️ Model Configuration</h2>', unsafe_allow_html=True)
+    st.sidebar.markdown('<h2 class="sub-header">Model Configuration</h2>', unsafe_allow_html=True)
     
     # Model information
     st.sidebar.info(f"**Model:** {DEFAULT_MODEL}")
@@ -152,14 +152,14 @@ def main():
     
     # Check if model is loaded
     if not hasattr(st.session_state, 'model_loaded') or not st.session_state.model_loaded:
-        st.warning("⚠️ Model is loading, please wait...")
+        st.warning("Model is loading, please wait...")
         st.stop()
     
     # Main content area
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        st.markdown('<h2 class="sub-header">📝 Analyze Restaurant Review</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 class="sub-header">Analyze Restaurant Review</h2>', unsafe_allow_html=True)
         
         # Text input methods
         input_method = st.radio(
@@ -176,7 +176,7 @@ def main():
                 placeholder="The food was absolutely delicious and the service was excellent. I would definitely recommend this restaurant to anyone looking for a great dining experience!"
             )
             
-            if st.button("🔍 Analyze Sentiment", type="primary"):
+            if st.button("Analyze Sentiment", type="primary"):
                 if review_text.strip():
                     with st.spinner("Analyzing sentiment..."):
                         sentiment, confidence = predict_sentiment(
@@ -226,7 +226,7 @@ def main():
                 placeholder="The food was great!\nTerrible service, would not recommend.\nAmazing atmosphere and delicious food."
             )
             
-            if st.button("🔍 Analyze All Reviews", type="primary"):
+            if st.button("Analyze All Reviews", type="primary"):
                 if multiple_reviews.strip():
                     reviews = [review.strip() for review in multiple_reviews.split('\n') if review.strip()]
                     
@@ -282,7 +282,7 @@ def main():
                     if review_columns:
                         review_col = st.selectbox("Select review column:", review_columns)
                         
-                        if st.button("🔍 Analyze Uploaded Reviews", type="primary"):
+                        if st.button("Analyze Uploaded Reviews", type="primary"):
                             results = []
                             progress_bar = st.progress(0)
                             
@@ -307,7 +307,7 @@ def main():
                             # Download results
                             csv = results_df.to_csv(index=False)
                             st.download_button(
-                                "📥 Download Results",
+                                "Download Results",
                                 csv,
                                 "sentiment_analysis_results.csv",
                                 "text/csv"
@@ -318,10 +318,10 @@ def main():
                     st.error(f"Error reading file: {str(e)}")
     
     with col2:
-        st.markdown('<h2 class="sub-header">ℹ️ Model Information</h2>', unsafe_allow_html=True)
+        st.markdown('<h2 class="sub-header">ℹModel Information</h2>', unsafe_allow_html=True)
         
         if hasattr(st.session_state, 'model_loaded') and st.session_state.model_loaded:
-            st.success("✅ Model Status: Loaded")
+            st.success("Model Status: Loaded")
             st.info(f"📍 Current Model: {st.session_state.current_model}")
             
             # Model details
