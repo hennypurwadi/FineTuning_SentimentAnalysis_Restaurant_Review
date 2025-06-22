@@ -129,19 +129,4 @@ Training was performed in a Google Colab environment.
 Python, PyTorch, Hugging Face Transformers library, pandas, numpy, scikit-learn, matplotlib, seaborn, nltk.
 
 ## Citation 
-BibTeX:
-
-```bibtex
-@misc{rin_inori_distilbert_restaurant_sentiment,
-  author = {RinInori},
-  title = {distilbert-restaurant-sentiment},
-  year = {2024},
-  publisher = {Hugging Face},
-  journal = {Hugging Face Hub},
-  howpublished = {\url{https://huggingface.co/RinInori/distilbert-restaurant-sentiment}}
-}
-```
-
-APA:
-
 RinInori. (2024). *distilbert-restaurant-sentiment*. Hugging Face Hub. Retrieved from https://huggingface.co/RinInori/distilbert-restaurant-sentiment
